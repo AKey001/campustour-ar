@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  m_GuidLow: 4712817633931452363
+  m_GuidHigh: 15304931273869445775
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 4630828738102680515
+      m_GuidHigh: 15278529436199470257
+    m_SerializedTextureGuid:
+      m_GuidLow: 1709216900545895598
+      m_GuidHigh: 16858542752023811512
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: Unity Icon
+    m_Texture: {fileID: 2800000, guid: 1921dcae5bb717b8b8951d055093f5e9, type: 3}
