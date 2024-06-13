@@ -134,6 +134,9 @@ public class KI : MonoBehaviour
 
     void OnDisable()
     {
-        worker.Dispose();
+        if (worker != null) 
+        {
+            worker.Dispose();
+        }
     }
 }
