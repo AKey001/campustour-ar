@@ -10,15 +10,16 @@ using Unity.Sentis;
 
 public class KI : MonoBehaviour
 {
-    public float timespan = 5f;  // seconds
+    public float timespan;  // seconds
     private float time;
 
-    private string URL = "http://localhost:5173/api/search";
+    private readonly string URL = "http://campustour.antonkiessling.de/api/search";
 
+    public Camera mainCamera;
     public PanelManager panel;
     public Text poi;
 
-    private ModelAsset modelAsset;
+    public ModelAsset modelAsset;
     private Model transformerModel;
     private IWorker worker;
 
@@ -37,29 +38,46 @@ public class KI : MonoBehaviour
 
      private Texture2D CaptureRealTimeImage()
     {
-        Camera mainCamera = Camera.main;
-        // The Render Texture in RenderTexture.active is the one
-        // that will be read by ReadPixels.
-        var currentRT = RenderTexture.active;
-        RenderTexture.active = mainCamera.targetTexture;
+        // // The Render Texture in RenderTexture.active is the one
+        // // that will be read by ReadPixels.
+        // var currentRT = RenderTexture.active;
+        // RenderTexture.active = mainCamera.targetTexture;
 
-        // Render the camera's view.
+        // // Render the camera's view.
+        // mainCamera.Render();
+
+        // // Make a new texture and read the active Render Texture into it.
+        // Texture2D image = new Texture2D(mainCamera.targetTexture.width, mainCamera.targetTexture.height);
+        // image.ReadPixels(new Rect(0, 0, mainCamera.targetTexture.width, mainCamera.targetTexture.height), 0, 0);
+        // image.Apply();
+
+        // // Replace the original active Render Texture.
+        // RenderTexture.active = currentRT;
+
+        // Erstellt ein RenderTexture mit der Größe des Bildschirms
+        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        mainCamera.targetTexture = renderTexture;
         mainCamera.Render();
 
-        // Make a new texture and read the active Render Texture into it.
-        Texture2D image = new Texture2D(mainCamera.targetTexture.width, mainCamera.targetTexture.height);
-        image.ReadPixels(new Rect(0, 0, mainCamera.targetTexture.width, mainCamera.targetTexture.height), 0, 0);
-        image.Apply();
+        // Erstellt eine neue Texture2D mit der Größe des RenderTextures
+        Texture2D screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        Rect rect = new Rect(0, 0, Screen.width, Screen.height);
+        RenderTexture.active = renderTexture;
+        screenshot.ReadPixels(rect, 0, 0);
+        screenshot.Apply();
 
-        // Replace the original active Render Texture.
-        RenderTexture.active = currentRT;
+        // Setzt die Kamera-Render-Textur zurück
+        mainCamera.targetTexture = null;
+        RenderTexture.active = null;
+        Destroy(renderTexture);
 
-        return image;
+        return screenshot;
     }
 
     private List<double> ExtractVector(Texture2D image)
     {
-        TensorFloat inputTensor = TextureConverter.ToTensor(image);
+        // TensorFloat inputTensor = TextureConverter.ToTensor(image);
+        TensorFloat inputTensor = TextureConverter.ToTensor(image, width: 224, height: 224, channels: 1);
 
         worker.Execute(inputTensor);
         TensorFloat outputTensor = worker.PeekOutput() as TensorFloat;
@@ -67,18 +85,19 @@ public class KI : MonoBehaviour
         outputTensor.CompleteOperationsAndDownload();
         float[] outputData = outputTensor.ToReadOnlyArray();
 
+        outputTensor.Dispose();
+
         List<double> vector = outputData.Select(value => (double) value).ToList();
         return vector;
     }
 
 
     private IEnumerator Process(List<double> vector) {
-        Body body = new Body();
-        body.vector = vector;
-
+        Body body = new()
+        {
+            vector = vector
+        };
         string bodyContent = JsonUtility.ToJson(body); 
-
-        Debug.Log("body: " + bodyContent);
 
         UnityWebRequest request = new UnityWebRequest(URL, "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(bodyContent);
@@ -93,7 +112,6 @@ public class KI : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("success");
-            string wrappedResponse = "{\"items\":" + request.downloadHandler.text + "}";
             ImageCategory category = JsonUtility.FromJson<ImageCategory>(request.downloadHandler.text );
 
             poi.text = category.category;
@@ -107,12 +125,14 @@ public class KI : MonoBehaviour
         
     }
 
-    void Start()
+    void Awake() 
     {
-        modelAsset = Resources.Load("/Src/Scripts/KI/vit-base-patch16-224-in21k/model.onnx") as ModelAsset;
         transformerModel = ModelLoader.Load(modelAsset);
         worker = WorkerFactory.CreateWorker(BackendType.GPUCompute, transformerModel);
+    }
 
+    void Start()
+    {
         time = Time.time + timespan;
     }
     
@@ -121,7 +141,7 @@ public class KI : MonoBehaviour
         if (time <= Time.time)
         {
             Texture2D image = CaptureRealTimeImage();
-            Debug.Log("image captured");
+            Debug.Log("image captured" + image);
             
             List<double> vector = ExtractVector(image);
             Debug.Log("extracted vector " + vector);

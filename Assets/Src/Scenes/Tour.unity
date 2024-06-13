@@ -782,8 +782,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timespan: 5
+  mainCamera: {fileID: 548123184}
   panel: {fileID: 835022222}
   poi: {fileID: 1029652608}
+  modelAsset: {fileID: 5022602860645237092, guid: 4ffdc7bac1a1ac6348569b63d5d8becd,
+    type: 3}
 --- !u!1 &983042743
 GameObject:
   m_ObjectHideFlags: 0
