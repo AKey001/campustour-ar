@@ -1,0 +1,12 @@
+Thank you for using the Retrobot Character! 
+
+This is a fairly sophisticated character, with quite a few functions and animations. Be sure to get familiar with the documentation.
+
+Documentation: 
+
+https://lb3d.co/retrobot-unity-3d-game-asset-documentation/
+
+Questions? Contact me (Leo) here: 
+
+https://lb3d.co/contact/
+
