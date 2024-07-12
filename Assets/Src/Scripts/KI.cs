@@ -23,10 +23,9 @@ public class KI : MonoBehaviour
      
     public List<POI> pois;
 
-
     // private readonly string URL = "https://campustour.antonkiessling.de/api/search";
-    private readonly string URL = "http://localhost:5173/api/search";
-    // private readonly string URL = "https://campustour-web.vercel.app/api/search";
+    // private readonly string URL = "http://localhost:5173/api/search";
+    private readonly string URL = "https://campustour-web.vercel.app/api/search";
 
     public Camera mainCamera;
     public PanelManager panel;
@@ -89,7 +88,7 @@ public class KI : MonoBehaviour
     private IEnumerator Process(Texture2D image)
     {
         WWWForm form = new WWWForm();
-        form.AddBinaryData("file", image.EncodeToPNG(), "224x224.png", "image/png");
+        form.AddBinaryData("file", image.EncodeToPNG(), "image.png", "image/png");
 
         using UnityWebRequest request = UnityWebRequest.Post(URL, form);
 
@@ -102,8 +101,7 @@ public class KI : MonoBehaviour
             Debug.Log("success");
             ImageCategory category = JsonUtility.FromJson<ImageCategory>(request.downloadHandler.text);
 
-            // arManager.SetCurrentPrefab(pois.Find(poi => poi.category == category.category).prefab);
-            arManager.SetCurrentPrefab(pois[0].prefab);
+            arManager.SetCurrentPrefab(pois.Find(poi => poi.category == category.category).prefab);
 
             poi.text = category.category;
             panel.Open();
@@ -113,9 +111,9 @@ public class KI : MonoBehaviour
             Debug.Log("not found");
             ImageCategory category = JsonUtility.FromJson<ImageCategory>(request.downloadHandler.text);
 
-            arManager.SetCurrentPrefab(pois[0].prefab);
-
-            // poi.text = category.score + ": " + category.category;
+            arManager.SetCurrentPrefab(pois[2].prefab);
+            
+            poi.text = category.score + ": " + category.category;
             panel.Open();
         }
     }

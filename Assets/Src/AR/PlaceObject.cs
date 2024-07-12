@@ -68,6 +68,11 @@ public class PlaceObjectInputSystem : MonoBehaviour
             Vector3 direction = cameraPosition - position;
             Quaternion targetRotation = Quaternion.LookRotation(forward: direction);
             instantiated.transform.rotation = targetRotation;   
+
+            foreach (var plane in planeManager.trackables)
+            {
+                Destroy(plane.gameObject);
+            }
         }
     }
 

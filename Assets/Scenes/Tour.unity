@@ -963,8 +963,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 540, y: 960}
-  m_SizeDelta: {x: 1080, y: 1920}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &600809716
 GameObject:
@@ -1292,7 +1292,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 835022228}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
         m_MethodName: Open
         m_Mode: 1
@@ -1492,7 +1492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &805993510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,10 +1510,10 @@ MonoBehaviour:
       LocationInputType: 0
       LocationData: {fileID: 0}
       Location:
-        Latitude: 51.1258
-        Longitude: 14.974001
+        Latitude: 51.148968
+        Longitude: 14.998416
         Altitude: 0
-        AltitudeMode: 0
+        AltitudeMode: 1
         Label: G II
       OverrideAltitudeData:
         OverrideAltitude: 0
@@ -1531,7 +1531,7 @@ MonoBehaviour:
     Reactivate: 1
     DeactivationRadius: 3
     Id: 0
-  DebugMode: 1
+  DebugMode: 0
   OnHotspotActivated:
     m_PersistentCalls:
       m_Calls:
@@ -1576,6 +1576,7 @@ GameObject:
   - component: {fileID: 835022224}
   - component: {fileID: 835022223}
   - component: {fileID: 835022222}
+  - component: {fileID: 835022228}
   - component: {fileID: 835022225}
   - component: {fileID: 835022226}
   - component: {fileID: 835022227}
@@ -1645,13 +1646,13 @@ MonoBehaviour:
   timespan: 3
   pois:
   - category: G II
-    prefab: {fileID: 1634462343471615926, guid: 3401d051a6160ec2e9c892b31cbce615,
+    prefab: {fileID: 6285926733484301397, guid: 55e053ce787132779af7b8c5770e5e97,
       type: 3}
   - category: G IV
-    prefab: {fileID: 8556658588940057734, guid: 613855b12e06ba530a4f441076b651e8,
+    prefab: {fileID: 9207165480466439568, guid: 0be7cc79e5ea3644c88faff3b513d396,
       type: 3}
   - category: Mensa/Bibliothek
-    prefab: {fileID: 2886634271104782114, guid: fa2fb213e5ac055fa8fad072142b4fc7,
+    prefab: {fileID: 7376221958380138755, guid: 0517df752464c89e2a0c1c5bcfa17aff,
       type: 3}
   mainCamera: {fileID: 548123184}
   panel: {fileID: 835022222}
@@ -1685,6 +1686,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 1d3bfb485a0a89349a6a6d8de2ec504f, type: 3}
+--- !u!114 &835022228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835022221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddfe52e0b8164b5cc87ee69067e2b89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 596021946}
+  background: {fileID: 166579247}
+  popup: {fileID: 2130367523}
 --- !u!1 &920881386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,7 +1719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &920881387
 Transform:
   m_ObjectHideFlags: 0
@@ -1739,7 +1755,7 @@ MonoBehaviour:
   MockLocationData: {fileID: 11400000, guid: ee3c6a6f0420495409d7197de6d17290, type: 2}
   MaxWaitTime: 200
   StartUpDelay: 0
-  DebugMode: 1
+  DebugMode: 0
   OnEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -1793,7 +1809,7 @@ MonoBehaviour:
   WaitForARTrackingToStart: 1
   RestartWhenARTrackingIsRestored: 1
   SetTargetFrameRateTo60Mhz: 1
-  DebugMode: 1
+  DebugMode: 0
   OnTrackingStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -1803,6 +1819,95 @@ MonoBehaviour:
   OnTrackingRestored:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &982841046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982841048}
+  - component: {fileID: 982841047}
+  m_Layer: 0
+  m_Name: Hotspot G IV
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &982841047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982841046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45580b397e1664d41b2551750b4f3e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocationSettings:
+    LocationInput:
+      LocationInputType: 0
+      LocationData: {fileID: 0}
+      Location:
+        Latitude: 51.149698
+        Longitude: 14.999629
+        Altitude: 0
+        AltitudeMode: 1
+        Label: G II
+      OverrideAltitudeData:
+        OverrideAltitude: 0
+        Altitude: 0
+        AltitudeMode: 0
+  HotspotSettings:
+    Prefab: {fileID: 9117619284702222445, guid: 55864f4f47038d94485ac4cac9ef1add,
+      type: 3}
+    PositionMode: 0
+    AlignToCamera: 1
+    DistanceFromCamera: 2
+    ActivationRadius: 3
+    UseRawLocation: 0
+    DeactivateOnLeave: 1
+    Reactivate: 1
+    DeactivationRadius: 3
+    Id: 0
+  DebugMode: 0
+  OnHotspotActivated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 835022227}
+        m_TargetAssemblyTypeName: GPSAudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHotspotDeactivated:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &982841048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982841046}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &983042743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,7 +3000,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 835022228}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
         m_MethodName: Close
         m_Mode: 1
@@ -3175,7 +3280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1984263113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3193,10 +3298,10 @@ MonoBehaviour:
       LocationInputType: 0
       LocationData: {fileID: 0}
       Location:
-        Latitude: 51.1258
-        Longitude: 14.974001
+        Latitude: 51.148991
+        Longitude: 14.997659
         Altitude: 0
-        AltitudeMode: 0
+        AltitudeMode: 1
         Label: G II
       OverrideAltitudeData:
         OverrideAltitude: 0
@@ -3214,7 +3319,7 @@ MonoBehaviour:
     Reactivate: 1
     DeactivationRadius: 3
     Id: 0
-  DebugMode: 1
+  DebugMode: 0
   OnHotspotActivated:
     m_PersistentCalls:
       m_Calls:
@@ -3446,3 +3551,4 @@ SceneRoots:
   - {fileID: 835022224}
   - {fileID: 1984263114}
   - {fileID: 805993511}
+  - {fileID: 982841048}
